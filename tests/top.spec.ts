@@ -40,8 +40,6 @@ test("/ SnapShot", async ({ page, msw }) => {
     rest.get("https://fonts.googleapis.com/*", async (req, res, ctx) => {
       const data = await fetch(`${ASSET_SERVER_URL}/noto_sans_jp.css`);
       const css = await data.text();
-
-      console.log("css: ", css);
       return res(ctx.status(200), ctx.text(css));
     }),
     rest.get("https://fonts.gstatic.com/*", passthroughHandler)
